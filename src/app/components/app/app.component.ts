@@ -9,7 +9,11 @@ import { CountryService } from 'src/app/service/country.service';
 })
 export class AppComponent implements OnInit{
   
+  firstAnswer:boolean=false;
+  cptAnswerCorrect:number=0;
+  result:boolean=false;
   buttonnext:boolean=false;
+  buttonNextText:String="Next";
   answer:String="";
   questions! :Question[];
   currentQuestion!:Question;
@@ -35,14 +39,20 @@ export class AppComponent implements OnInit{
     })
   };
   clicAnswer(answer:any,id:number){
-    let options = document.querySelectorAll(".option");
+    const options = document.querySelectorAll(".option");
     this.answer = answer;
+   if(!this.firstAnswer){
     if(answer === this.currentQuestion.correct_answer){
       options[id].classList.add("correct_answer");
+      this.cptAnswerCorrect++;
+      this.buttonNextText = "Next";
     }else{
       options[id].classList.add("wrong_answer");
       options[this.currentQuestion.answers.indexOf(this.currentQuestion.correct_answer)].classList.add("correct_answer");
+      this.buttonNextText = "Result";
     }
+    this.firstAnswer=true;
+   }
     this.buttonnext=true;
   }
 
@@ -53,9 +63,19 @@ export class AppComponent implements OnInit{
       options[index].classList.remove("correct_answer");
       options[index].classList.remove("wrong_answer");
     }
-    const random :number = Math.floor(Math.random() * 255);
-    const answers : String[] =[this.questions[random].pays,this.questions[Math.floor(Math.random() * 255)].pays,this.questions[Math.floor(Math.random() * 255)].pays,this.questions[Math.floor(Math.random() * 255)].pays];
-    this.currentQuestion = {pays:this.questions[random].pays,capital:this.questions[random].capital,answers:this.fisherYatesShuffle(answers),correct_answer:this.questions[random].pays};
+    if(this.buttonNextText==="Result"){
+      this.result=true;
+    }
+      const random :number = Math.floor(Math.random() * 255);
+      const answers : String[] =[this.questions[random].pays,this.questions[Math.floor(Math.random() * 255)].pays,this.questions[Math.floor(Math.random() * 255)].pays,this.questions[Math.floor(Math.random() * 255)].pays];
+      this.currentQuestion = {pays:this.questions[random].pays,capital:this.questions[random].capital,answers:this.fisherYatesShuffle(answers),correct_answer:this.questions[random].pays};   
+
+      this.firstAnswer=false; 
+    
+  }
+  tryAgain(){
+    this.result=false;
+    this.cptAnswerCorrect=0;
   }
 private fisherYatesShuffle(arr:String[]){
   for(var i =arr.length-1 ; i>0 ;i--){

@@ -3,18 +3,52 @@ div.principal{
     height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+div.principal h1.country-quiz{
+    width: 464px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+
+    color: #F2F2F2;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+}
+.loading::after{
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 10px solid #dddddddd;
+    border-top-color: rgba(96, 102, 208, 0.7);
+    border-radius: 50%;
+    animation: loading 1s linear infinite;
+}
+@keyframes loading {
+    to{
+        transform: rotate(1turn);
+    }
+}
 .question{
-    width: 35%;
-    height: 90%;
+    width: 464px;
+    height: 70%;
     background: #FFFFFF;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    color: #2F527B;
     
 }
 .question h1{
@@ -92,4 +126,76 @@ div.principal{
     border: none;
     margin-left: auto;
 
+}
+
+.qst{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+/***** Result ******/
+.result{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.result h1{
+    width: 50%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height */
+    
+    
+    color: #1D355D;
+}
+.result p{
+    width: 50%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #1D355D;
+}
+.result button{
+    
+    border: 2px solid #1D355D;
+    border-radius: 12px;
+    width: 209px;
+    height: 62px;
+    background: #FFFFFF;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    width: 50%;
+    color: #1D355D;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width:470px) {
+    .question, 
+    div.principal h1.country-quiz{
+        width: 98%;
+    }
+    
 }

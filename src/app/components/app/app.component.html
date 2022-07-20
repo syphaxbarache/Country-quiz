@@ -1,13 +1,23 @@
 <div  class="principal"  >
+    <div *ngIf="!currentQuestion" class="loading"></div>
+    <h1 *ngIf="currentQuestion"  class="country-quiz">Country quiz</h1>
     <div *ngIf="currentQuestion" class="question">
-        <h1>{{currentQuestion? currentQuestion.capital : ""}} is the capital of</h1>
-        <ul>
-            <li  (click)="clicAnswer(currentQuestion.answers[0],0)" class="option"><span>A</span><span>{{currentQuestion? currentQuestion.answers[0] :""}}</span></li>
-            <li  (click)="clicAnswer(currentQuestion.answers[1],1)"class="option"><span>B</span><span>{{currentQuestion? currentQuestion.answers[1] :""}}</span></li>
-            <li  (click)="clicAnswer(currentQuestion.answers[2],2)"class="option"><span>C</span><span>{{currentQuestion? currentQuestion.answers[2] :""}}</span></li>
-            <li  (click)="clicAnswer(currentQuestion.answers[3],3)"class="option"><span>D</span><span>{{currentQuestion? currentQuestion.answers[3] :""}}</span></li>
-            <button *ngIf="buttonnext" (click)="nextQuestion()">Next</button>
-        </ul>
+        <div *ngIf="!result" class="qst">
+            <h1>{{currentQuestion? currentQuestion.capital : ""}} is the capital of</h1>
+            <ul>
+                <li  (click)="clicAnswer(currentQuestion.answers[0],0)" class="option"><span>A</span><span>{{currentQuestion? currentQuestion.answers[0] :""}}</span></li>
+                <li  (click)="clicAnswer(currentQuestion.answers[1],1)"class="option"><span>B</span><span>{{currentQuestion? currentQuestion.answers[1] :""}}</span></li>
+                <li  (click)="clicAnswer(currentQuestion.answers[2],2)"class="option"><span>C</span><span>{{currentQuestion? currentQuestion.answers[2] :""}}</span></li>
+                <li  (click)="clicAnswer(currentQuestion.answers[3],3)"class="option"><span>D</span><span>{{currentQuestion? currentQuestion.answers[3] :""}}</span></li>
+                <button *ngIf="buttonnext" (click)="nextQuestion()">{{buttonNextText}}</button>
+            </ul>
+        </div>
+
+        <div *ngIf="result" class="result">
+            <h1>Results</h1>
+            <p>You got <span>{{cptAnswerCorrect}}</span> correct answers</p>
+            <button (click)=" tryAgain()">Try again</button>
+        </div>
        
     </div>
 </div>

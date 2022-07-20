@@ -7,7 +7,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://weather-app1react.netlify.app/">
+    <a href="https://country-quiz-711d1.web.app/">
       Demo
     </a>
     <span> | </span>
